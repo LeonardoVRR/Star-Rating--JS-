@@ -16,8 +16,12 @@ function updateStars(event) {
   const index_MouseStar = Array.from(stars).indexOf(targetStar);
   const fillPercentage = Math.max(0, Math.min((offsetX / width) * 100, 100));
 
-  if ((index_MouseStar + fillPercentage / 100).toFixed(1) <= 5.0 || (index_MouseStar + fillPercentage / 100).toFixed(1) <= 0.0) {
-    currentRating = (index_MouseStar + fillPercentage / 100).toFixed(1);
+  // Usar fillPercentage diretamente sem .toFixed()
+  const rating = index_MouseStar + fillPercentage / 100;
+
+  // Verificar se o rating está dentro do intervalo válido
+  if (rating >= 0.0 && rating <= 5.0) {
+    currentRating = rating.toFixed(1);
   }
 
   // Atualiza o preenchimento das estrelas

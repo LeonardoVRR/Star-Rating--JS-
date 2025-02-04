@@ -6,52 +6,64 @@
 
 :root {
   --cor_fundo: #adb19800;
+  --tamanho_estrelha: 5vw;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ display: flex;
+ flex-flow: row nowrap;
+ align-items: center;
+ justify-content: center;
+ gap: 50px;
+
+ height: 100vh;
+ padding: 20px;
 
   background-color: #5a5a5a;
 }
 
 .star_rating {
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+
+  padding: 10px;
+  width: 30%;
+  height: 50%;
+
 
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 
-  background-color: rgba(255, 127, 249, 0);
-}
-
-.star_rating > * {
-  flex: 1;
+  background-color: rgb(255, 127, 249);
 }
 
 .img_movie {
-  width: 45vh;
+
+  width: 40vh;
+  
   margin-bottom: 10px;
 }
 
 .classification {
-  font-size: 3.2em;
+  font-size: 8vh;
 }
 
 #rate_btn {
 
-  display: none;
+  /* display: none; */
   
-  position: absolute;
-  right: -35%;
+  /* position: absolute;
+  right: 0%; */
+
+  max-width: 40%;
+  max-height: 25%;
 
   padding: 2% 5%;
-  font-size: 1.2em;
+  font-size: 2.5vh;
   border: none;
   border-radius: 0px 50px;
   cursor: pointer;
@@ -72,7 +84,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
+  width: 100%;
+  height: 30%;
+  margin-bottom: 5%;
 
   background-color: var(--cor_fundo);
   flex-wrap: wrap;
@@ -83,8 +98,12 @@ body {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  
+
   padding: 10px 20px;
+
+  width: 100%;
+  height: 100%;
+  
 
   background-color: rgba(0, 100, 0, 0);
 
@@ -94,23 +113,22 @@ body {
 .star {
   flex: 1;
   position: relative;
-  background-color: rgba(255, 127, 80, 0);
-  width: 11vh;
-  height: 11vh;
-
+  background-color: rgba(255, 68, 0, 0);
+  width: 100%;
+  height: 100%;
 }
 
 .star_border {
   /* background: #99252500 url("img/empty-star.png") no-repeat center;
   background-size: contain; */
   z-index: 7;
-  width: 100%;
-  height: 100%;
+  width: var(--tamanho_estrelha);
+  height: var(--tamanho_estrelha);
 
   position: absolute;
-  /* top: 50%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
 
   clip-path: polygon(
     50% 0%,
@@ -129,8 +147,8 @@ body {
 }
 
 .star_shape {
-  width: 85%;
-  height: 85%;
+  width: calc(var(--tamanho_estrelha) - 1vw);
+  height: calc(var(--tamanho_estrelha) - 1vw);
 
   clip-path: polygon(
     50% 0%,
@@ -145,6 +163,7 @@ body {
     39% 35%
   );
   overflow: hidden;
+
   position: absolute;
   top: 50%;
   left: 50%;

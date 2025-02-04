@@ -7,45 +7,91 @@
     <title>Div em Forma de Estrela</title>
   </head>
   <body>
-    <img src="img/debi00.png" alt="anime girl" class="img_movie">
-    <div class="star_rating">
-      <div class="star_container" id="star_container">
-          <div id="stars">
-            <div class="star" id="star_1">
-              <div class="star_border"></div>
-              <div class="star_shape">
-                <div class="star_background"></div>
-              </div>
-            </div>
-            <div class="star" id="star_2">
-              <div class="star_border"></div>
-              <div class="star_shape">
-                <div class="star_background"></div>
-              </div>
-            </div>
-            <div class="star" id="star_3">
-              <div class="star_border"></div>
-              <div class="star_shape">
-                <div class="star_background"></div>
-              </div>
-            </div>
-            <div class="star" id="star_4">
-              <div class="star_border"></div>
-              <div class="star_shape">
-                <div class="star_background"></div>
-              </div>
-            </div>
-            <div class="star" id="star_5">
-              <div class="star_border"></div>
-              <div class="star_shape">
-                <div class="star_background"></div>
-              </div>
-            </div>
-          </div>   
+    <div class="img_movie">
+      <div class="next_movie_btn_container">
+        <div class="position_btn"><button class="button-86" role="button" id="next_move_btn">Next Movie</button></div>
       </div>
-      <button type="button" id="rate_btn">Rate Movie</button> 
-      <h1 class="classification" id="star_rating_txt">0.0 ★</h1>
     </div>
+    <main>
+      <h1 class="movie_name">Debi e Loid 2</h1>
+      <section class="star_rating">
+        <h1 class="classification" id="star_rating_txt">0.0</h1>
+        <div class="star_container" id="star_container">
+            <div id="stars">
+              <div class="star" id="star_1">
+                <div class="star_border"></div>
+                <div class="star_shape">
+                  <div class="star_background"></div>
+                </div>
+              </div>
+              <div class="star" id="star_2">
+                <div class="star_border"></div>
+                <div class="star_shape">
+                  <div class="star_background"></div>
+                </div>
+              </div>
+              <div class="star" id="star_3">
+                <div class="star_border"></div>
+                <div class="star_shape">
+                  <div class="star_background"></div>
+                </div>
+              </div>
+              <div class="star" id="star_4">
+                <div class="star_border"></div>
+                <div class="star_shape">
+                  <div class="star_background"></div>
+                </div>
+              </div>
+              <div class="star" id="star_5">
+                <div class="star_border"></div>
+                <div class="star_shape">
+                  <div class="star_background"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <button type="button" id="rate_btn">Rate Movie</button>
+      </section>
+      <div class="star_rating_score">
+        <div class="rating_score_container" style="order: 5;">
+          <p>1<span>★</span></p>
+          <div class="rating_score_border">
+            <div class="rating_score_fill"></div>
+          </div>
+          <p>(<span class="number_reviews">0</span>)</p>
+        </div>
+        <div class="rating_score_container" style="order: 4;">
+          <p>2<span>★</span></p>
+          <div class="rating_score_border">
+            <div class="rating_score_fill"></div>
+          </div>
+          <p>(<span class="number_reviews">0</span>)</p>
+        </div>
+        <div class="rating_score_container" style="order:3;">
+          <p>3<span>★</span></p>
+          <div class="rating_score_border">
+            <div class="rating_score_fill"></div>
+          </div>
+          <p>(<span class="number_reviews">0</span>)</p>
+        </div>
+        <div class="rating_score_container" style="order: 2;">
+          <p>4<span>★</span></p>
+          <div class="rating_score_border">
+            <div class="rating_score_fill"></div>
+          </div>
+          <p>(<span class="number_reviews">0</span>)</p>
+        </div>
+        <div class="rating_score_container" style="order: 1;">
+          <p>5<span>★</span></p>
+          <div class="rating_score_border">
+            <div class="rating_score_fill"></div>
+          </div>
+          <p>(<span class="number_reviews">0</span>)</p>
+        </div>
+
+        <h1 style="order: 6;" class="total_rating_txt">Total ratings: <span id="total_rating">0</span></h1>
+      </div>
+    </main>
     <script src="main.js"></script>
   </body>
 </html>

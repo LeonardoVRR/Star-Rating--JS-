@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +7,10 @@
 }
 
 :root {
-  --cor_fundo: #adb19800;
+  --cor_fundo: #2d2c56;
   --tamanho_estrelha: 5vw;
+  --cor_estrela: #fbfd03;
+  --tamanho_capa_filme: 30vw;
 }
 
 body {
@@ -14,55 +18,175 @@ body {
  flex-flow: row nowrap;
  align-items: center;
  justify-content: center;
- gap: 50px;
+ gap: 20px;
 
  height: 100vh;
  padding: 20px;
 
-  background-color: #5a5a5a;
+  background-color: #19183a;
+}
+
+main {
+  padding: 10px;
+  width: 30%;
+  height: 70%;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .star_rating {
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
 
-  padding: 10px;
-  width: 30%;
-  height: 50%;
+  width: 100%;
+  height: 90%;
 
+  border-radius: 20px;
 
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 
-  background-color: rgb(255, 127, 249);
+  background-color: var(--cor_fundo);
+}
+
+.movie_name {
+  color: white;
+  text-align: center;
+  font-size: 2.3vw;
 }
 
 .img_movie {
-
-  width: 40vh;
-  
+  width: var(--tamanho_capa_filme);
+  height: calc(var(--tamanho_capa_filme) + 20vh);
   margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0) url("img/debi00.png") no-repeat center;
+  background-size: contain;
+
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.next_movie_btn_container {
+
+  display: none;
+
+  width: 100%;
+  height: 20%;
+  
+  background-image: linear-gradient(360deg, rgb(0, 0, 0), rgba(0, 0, 0, 0.829));
+  box-shadow: 0px 0px 20px 10px #000000;
+  
+  position: relative;
+
+}
+
+.img_movie:hover .next_movie_btn_container {
+  display: block;
+}
+
+.position_btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* configs. botão proximo filme */
+.button-86 {
+  
+  all: unset;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  position: relative;
+  color: #f0f0f0;
+  cursor: pointer;
+  z-index: 1;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-86::after,
+.button-86::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -99999;
+  transition: all .4s;
+}
+
+.button-86::before {
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #28282d;
+  border-radius: 10px;
+}
+
+.button-86::after {
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff15;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 50px;
+}
+
+.button-86:hover::before {
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+  background: #b13333;
+}
+.button-86:active::before {
+  background: rgb(255, 72, 72);
+}
+
+.button-86:hover::after {
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.button-86:active::after {
+  transition: 0s;
+  transform: translate(0, 5%);
 }
 
 .classification {
   font-size: 8vh;
+  color: white;
+
+  font-family: "Black Ops One", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 #rate_btn {
 
-  /* display: none; */
-  
-  /* position: absolute;
-  right: 0%; */
+  max-width: 80%;
+  max-height: 40%;
 
-  max-width: 40%;
-  max-height: 25%;
+  margin: 10px 0;
 
-  padding: 2% 5%;
+  padding: 5px 20px;
   font-size: 2.5vh;
   border: none;
   border-radius: 0px 50px;
@@ -82,15 +206,12 @@ body {
 
 .star_container {
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 
   width: 100%;
-  height: 30%;
-  margin-bottom: 5%;
-
-  background-color: var(--cor_fundo);
-  flex-wrap: wrap;
+  height: 100%;
 }
 
 #stars {
@@ -99,23 +220,20 @@ body {
   align-items: center;
   gap: 5px;
 
-  padding: 10px 20px;
-
   width: 100%;
   height: 100%;
   
 
   background-color: rgba(0, 100, 0, 0);
 
-  border: 3px solid black;
+  /* border: 3px solid black; */
 }
 
 .star {
-  flex: 1;
   position: relative;
   background-color: rgba(255, 68, 0, 0);
-  width: 100%;
-  height: 100%;
+  width: var(--tamanho_estrelha);
+  height: var(--tamanho_estrelha);
 }
 
 .star_border {
@@ -143,12 +261,12 @@ body {
     39% 35%
   );
 
-  background-color: rgb(0, 0, 0);
+  background-color: #b8b9cb;
 }
 
 .star_shape {
-  width: calc(var(--tamanho_estrelha) - 1vw);
-  height: calc(var(--tamanho_estrelha) - 1vw);
+  width: var(--tamanho_estrelha);
+  height: var(--tamanho_estrelha);
 
   clip-path: polygon(
     50% 0%,
@@ -169,12 +287,120 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  background-color: var(--cor_fundo);
   z-index: 8;
 }
 
 .star_background {
   width: 0%;
   height: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--cor_estrela);
+}
+
+/* estilizaçao do campo star rating score*/
+
+.star_rating_score {
+  width: 100%;
+  height: 100%;
+  background-color: var(--cor_fundo);
+  border-radius: 20px;
+  color: white;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+
+  padding: 10px;
+}
+
+.rating_score_container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.rating_score_container span {
+  color: var(--cor_estrela);
+}
+
+.rating_score_border {
+  width: 100%;
+  height: 40%;
+  background-color: #19183a;
+}
+
+.rating_score_fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--cor_estrela);
+}
+
+.number_reviews {
+  color: white !important;
+}
+
+/* media queries*/
+
+@media only screen and (max-width: 650px) {
+
+  :root {
+    --tamanho_estrelha: 8vw;
+  }
+
+  body {
+    flex-flow: column nowrap;
+  }
+
+  main {
+    width: 90%;
+    height: 50%;
+  }
+  
+  .star_container {
+    height: 40%;
+  }
+
+  #rate_btn {
+    font-size: 2vh;
+  }
+
+  .classification {
+    font-size: 5vh;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+  :root {
+    --tamanho_capa_filme: 60vw;
+  }
+
+  main {
+    width: 100%;
+    height: 50%;
+  
+  }
+
+  .classification {
+    font-size: 4vh;
+  }
+
+  #rate_btn {
+    font-size: 1vh;
+  }
+
+  .star_rating {
+    height: 50%;
+  }
+
+  #stars {
+    height: 50%;
+  }
+
+  .total_rating_txt {
+    font-size: 1.5vh;
+  }
 }

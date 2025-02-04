@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cor_fundo: #adb19800;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #5a5a5a;
+}
+
+.star_rating {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(255, 127, 249, 0);
+}
+
+.star_rating > * {
+  flex: 1;
+}
+
+.img_movie {
+  width: 45vh;
+  margin-bottom: 10px;
+}
+
+.classification {
+  font-size: 3.2em;
+}
+
+#rate_btn {
+
+  display: none;
+  
+  position: absolute;
+  right: -35%;
+
+  padding: 2% 5%;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 0px 50px;
+  cursor: pointer;
+
+  color: white;
+  background-color: rgb(46, 46, 255);
+}
+
+#rate_btn:hover {
+  background-color: rgb(69, 69, 255);
+}
+
+#rate_btn:active {
+  background-color: rgb(88, 88, 228);
+}
+
+.star_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+  background-color: var(--cor_fundo);
+  flex-wrap: wrap;
+}
+
+#stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  
+  padding: 10px 20px;
+
+  background-color: rgba(0, 100, 0, 0);
+
+  border: 3px solid black;
+}
+
+.star {
+  flex: 1;
+  position: relative;
+  background-color: rgba(255, 127, 80, 0);
+  width: 11vh;
+  height: 11vh;
+
+}
+
+.star_border {
+  /* background: #99252500 url("img/empty-star.png") no-repeat center;
+  background-size: contain; */
+  z-index: 7;
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+
+  background-color: rgb(0, 0, 0);
+}
+
+.star_shape {
+  width: 85%;
+  height: 85%;
+
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--cor_fundo);
+  z-index: 8;
+}
+
+.star_background {
+  width: 0%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}

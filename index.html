@@ -4,16 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
-    <title>Div em Forma de Estrela</title>
+    <link rel="shortcut icon" href="favicon/icons8-cinnamoroll-gradient-32.png" type="image/x-icon">
+    <title>Avaliador de Animes</title>
   </head>
   <body>
     <div class="img_movie">
-      <div class="next_movie_btn_container">
-        <div class="position_btn"><button class="button-86" role="button" id="next_move_btn">Next Movie</button></div>
-      </div>
     </div>
     <main>
-      <h1 class="movie_name">Debi e Loid 2</h1>
+      <button class="movie_name" title="clique para copiar">Pokémon: The First Movie</button>
       <section class="star_rating">
         <h1 class="classification" id="star_rating_txt">0.0</h1>
         <div class="star_container" id="star_container">
@@ -50,7 +48,10 @@
               </div>
             </div>
         </div>
-        <button type="button" id="rate_btn">Rate Movie</button>
+        <div class="button_container">
+          <button type="button" id="rate_btn">Avaliar Anime</button>
+          <button type="button" class="" id="next_move_btn">Próximo Anime</button>
+        </div>
       </section>
       <div class="star_rating_score">
         <div class="rating_score_container" style="order: 5;">
@@ -89,9 +90,26 @@
           <p>(<span class="number_reviews">0</span>)</p>
         </div>
 
-        <h1 style="order: 6;" class="total_rating_txt">Total ratings: <span id="total_rating">0</span></h1>
+        <h1 style="order: 6;" class="total_rating_txt">Total de avalições: <span id="total_rating">0</span></h1>
       </div>
     </main>
+
+    <div class="error_modal_container">
+      <div class="error_modal">
+        <button class="close_modal_btn" id="close_modal_btn">
+          <img src="img/close.png" alt="">
+          Fechar
+        </button>
+        <h1>Ops! Algo deu errado</h1>
+        <img src="img/Remove-bg.ai_1738716562873.png" alt="" class="error_character_img">
+        <p>Infelizmente, não conseguimos localizar os dados deste anime. Mas não se preocupe!
+          <br><br>
+          Tente novamente clicando no botão "Próximo Anime" e descubra outra série para explorar. Se o erro persistir, tente atualizar a página ou voltar mais tarde.
+          <br><br>
+          Obrigado pela paciência!
+          </p>
+      </div>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>

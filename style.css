@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geo:ital@0;1&display=swap');
 
 * {
   margin: 0;
@@ -11,6 +12,27 @@
   --tamanho_estrelha: 5vw;
   --cor_estrela: #fbfd03;
   --tamanho_capa_filme: 30vw;
+}
+
+@font-face {
+  font-family: "pixel_font";
+  src: url("fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "anime_font_title";
+  src: url("fonts/HIROMISAKE.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "glitch font";
+  src: url("fonts/Glitch\ inside.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -27,7 +49,6 @@ body {
 }
 
 main {
-  padding: 10px;
   width: 30%;
   height: 70%;
 
@@ -58,13 +79,24 @@ main {
   color: white;
   text-align: center;
   font-size: 2.3vw;
+  background-color: #19183a00;
+  border: none;
+  padding: 5px 20px;
+
+  font-family: 'anime_font_title', 'Arial Narrow', Arial, sans-serif;
+}
+
+.movie_name:hover {
+  background-color: #2d2c56;
+  cursor: pointer;
+  border-radius: 30px;
 }
 
 .img_movie {
   width: var(--tamanho_capa_filme);
   height: calc(var(--tamanho_capa_filme) + 20vh);
   margin-bottom: 10px;
-  background: rgba(0, 0, 0, 0) url("img/debi00.png") no-repeat center;
+  background: rgba(0, 0, 0, 0) url("img/pokemon-o-filme-mewtwo-contra-ataca.jpg") no-repeat center;
   background-size: contain;
 
   display: flex;
@@ -72,102 +104,11 @@ main {
   align-items: end;
 }
 
-.next_movie_btn_container {
-
-  display: none;
-
-  width: 100%;
-  height: 20%;
-  
-  background-image: linear-gradient(360deg, rgb(0, 0, 0), rgba(0, 0, 0, 0.829));
-  box-shadow: 0px 0px 20px 10px #000000;
-  
-  position: relative;
-
-}
-
-.img_movie:hover .next_movie_btn_container {
-  display: block;
-}
-
 .position_btn {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-/* configs. botão proximo filme */
-.button-86 {
-  
-  all: unset;
-  width: 100px;
-  height: 30px;
-  font-size: 16px;
-  background: transparent;
-  border: none;
-  position: relative;
-  color: #f0f0f0;
-  cursor: pointer;
-  z-index: 1;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-86::after,
-.button-86::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: -99999;
-  transition: all .4s;
-}
-
-.button-86::before {
-  transform: translate(0%, 0%);
-  width: 100%;
-  height: 100%;
-  background: #28282d;
-  border-radius: 10px;
-}
-
-.button-86::after {
-  transform: translate(10px, 10px);
-  width: 35px;
-  height: 35px;
-  background: #ffffff15;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-radius: 50px;
-}
-
-.button-86:hover::before {
-  transform: translate(5%, 20%);
-  width: 110%;
-  height: 110%;
-  background: #b13333;
-}
-.button-86:active::before {
-  background: rgb(255, 72, 72);
-}
-
-.button-86:hover::after {
-  border-radius: 10px;
-  transform: translate(0, 0);
-  width: 100%;
-  height: 100%;
-}
-
-.button-86:active::after {
-  transition: 0s;
-  transform: translate(0, 5%);
 }
 
 .classification {
@@ -179,12 +120,22 @@ main {
   font-style: normal;
 }
 
-#rate_btn {
+.button_container {
+  width: 100%;
+  height: 30%;
 
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+#next_move_btn {
   max-width: 80%;
-  max-height: 40%;
+  height: 50%;
 
-  margin: 10px 0;
+  margin: 15px 0;
 
   padding: 5px 20px;
   font-size: 2.5vh;
@@ -196,11 +147,28 @@ main {
   background-color: rgb(46, 46, 255);
 }
 
-#rate_btn:hover {
+#rate_btn {
+
+  max-width: 80%;
+  height: 50%;
+
+  margin: 15px 0;
+
+  padding: 5px 20px;
+  font-size: 2.5vh;
+  border: none;
+  border-radius: 0px 50px;
+  cursor: pointer;
+
+  color: white;
+  background-color: rgb(46, 46, 255);
+}
+
+#rate_btn:hover, #next_move_btn:hover {
   background-color: rgb(69, 69, 255);
 }
 
-#rate_btn:active {
+#rate_btn:active, #next_move_btn:active {
   background-color: rgb(88, 88, 228);
 }
 
@@ -342,6 +310,109 @@ main {
   color: white !important;
 }
 
+/* Quadro de aviso de erro*/
+
+.error_modal_container {
+
+  display: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.295);
+
+  z-index: 90;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.error_modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 500px;
+  height: 300px;
+  background: white url("img/404-not-found-cute\(2\).jpg") no-repeat bottom;
+  background-size: cover;
+
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.error_character_img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 50%;
+  opacity: 0.6;
+}
+
+.close_modal_btn {
+  
+  background-color: #e92525;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 50px;
+
+  width: 100px;
+  
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.close_modal_btn img {
+  width: 15%;
+}
+
+.close_modal_btn:hover {
+  background-color: #fc3d3d;
+}
+
+.close_modal_btn:active {
+  background-color: #ff2b2b;
+}
+
+.error_modal > h1 {
+  text-align: center;
+  color: #FF3333;
+
+  font-size: 2em;
+
+  font-family: 'pixel_font', 'Arial Narrow', Arial, sans-serif;
+}
+
+.error_modal > p {
+
+  text-align: justify;
+  font-size: 1.2em;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  
+
+  font-family: "Geo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* media queries*/
 
 @media only screen and (max-width: 650px) {
@@ -363,7 +434,7 @@ main {
     height: 40%;
   }
 
-  #rate_btn {
+  #rate_btn, #next_move_btn {
     font-size: 2vh;
   }
 
@@ -388,7 +459,7 @@ main {
     font-size: 4vh;
   }
 
-  #rate_btn {
+  #rate_btn, #next_move_btn {
     font-size: 1vh;
   }
 

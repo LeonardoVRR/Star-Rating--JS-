@@ -62,7 +62,7 @@ rate_btn.addEventListener("click", () => {
   starContainer.addEventListener('click', () => {
     removeMouseEvents();
     starContainer.style.cursor = "auto"
-    console.log(`Classificação final: ${currentRating} estrelas`);
+    //console.log(`Classificação final: ${currentRating} estrelas`);
   });
 
   starContainer.addEventListener('click', add_total_star_rating_score)
@@ -116,7 +116,7 @@ function star_level_rating_fill_level() {
 
     let fillPercentage = Math.max(0, Math.min((rating_star_level_score / total_score) * 100, 100));
 
-    console.log(`star level: ${index+1}, score: ${rating_star_level_score}`)
+    //console.log(`star level: ${index+1}, score: ${rating_star_level_score}`)
 
     rating_star_level_width.style.width = `${fillPercentage}%`
   })
@@ -130,7 +130,7 @@ function resetStars() {
 }
 
 function reset_star_rating_score() {
-  stars_ratings.forEach((rating_star_level, index) => {
+  stars_ratings.forEach((rating_star_level) => {
 
     let rating_star_level_score = rating_star_level.querySelector(".number_reviews")
 
@@ -139,29 +139,103 @@ function reset_star_rating_score() {
     const rating_star_level_width = rating_star_level.querySelector(".rating_score_fill")
     rating_star_level_width.style.width = `0%`
   })
+
+  total_star_rating_score_TXT.innerText = 0
 }
+
+//configs. quadro de avisos de erro
+
+const error_modal_container = document.querySelector(".error_modal_container")
+
+error_modal_container.addEventListener("click", (event) => {
+  const clickMouse = event.target.className
+
+  if (clickMouse === "error_modal_container" || clickMouse === "close_modal_btn") {
+    error_modal_container.style.display = "none"
+  }
+})
 
 // configs. botão proximo filme e banner do filme
 
 const img_movie = document.querySelector(".img_movie")
 const next_move_btn_container = document.querySelector(".next_movie_btn_container")
 const next_move_btn = document.getElementById("next_move_btn")
+const movie_name = document.querySelector(".movie_name")
+const maximum_number_range = 10000
 
 next_move_btn.addEventListener("click", () => {
-
-  
-
-  setTimeout(()=>{
-    console.log("Botão invisivel")
-    next_move_btn_container.style.display = "none"
-  }, 0)
 
   resetStars()
   reset_star_rating_score()
 
-  img_movie.style.backgroundImage = `url('img/sonic\ 3\ banner.jpg')`;
+  let numID = Math.floor(Math.random() * maximum_number_range) + 1;
+  let url = `https://api.jikan.moe/v4/anime/${numID}/full`
+
+  //console.log(`Numero gerado: ${numID}`)
+
+  getAnimeData(url, numID)
+
 })
 
-img_movie.addEventListener("click", () => {
-  next_move_btn_container.style.display = "block"
-})
+const invalid_id_numbers = []
+
+// Função para obter os dados
+async function getAnimeData(url, numID) {
+
+  //console.log(`numeros de ID's invalidos: ${invalid_id_numbers}`)
+  let invalid_id = invalid_id_numbers.indexOf(numID)
+
+  if (invalid_id !== -1) {
+    numID = Math.floor(Math.random() * maximum_number_range) + 1;
+  }
+
+  try {
+      // Fazendo a requisição GET para a API
+      const response = await fetch(url);
+      
+      // Verificando se a resposta foi bem-sucedida
+      if (!response.ok) {
+
+        let check_invalid_id = invalid_id_numbers.indexOf(numID)
+
+        if (check_invalid_id === -1) {
+          invalid_id_numbers.push(numID)
+        }
+
+        throw new Error(`${url}\nErro ao buscar dados da API\nlista de ID rejeitadas: ${invalid_id_numbers}`);
+      }
+      
+      // Convertendo a resposta para JSON
+      const data = await response.json();
+
+      let anime_poster = data.data.images.jpg.image_url
+      let anime_name = data.data.title
+    
+      movie_name.innerText = anime_name
+      img_movie.style.backgroundImage = `url('${anime_poster}')`;
+      
+  } catch (error) {
+      console.error('Erro:', error);
+
+      error_modal_container.style.display = "block"
+
+      // let numID = Math.floor(Math.random() * maximum_number_range) + 1;
+      // let url = `https://api.jikan.moe/v4/anime/${numID}/full`
+
+      // getAnimeData(url, numID)
+  }
+  
+}
+
+// função para copiar o nome do anime
+const animeName = document.querySelector(".movie_name");
+animeName.addEventListener("click", function() {
+  const animeName_txt = animeName.textContent
+  
+  // Copiar para a área de transferência
+  navigator.clipboard.writeText(animeName_txt).then(function() {
+    console.log("Texto copiado com sucesso!");
+  }).catch(function(err) {
+    console.error("Erro ao copiar o texto: ", err);
+  });
+});

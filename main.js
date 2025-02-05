@@ -140,6 +140,7 @@ function reset_star_rating_score() {
     rating_star_level_width.style.width = `0%`
   })
 
+  total_score = 0
   total_star_rating_score_TXT.innerText = 0
 }
 

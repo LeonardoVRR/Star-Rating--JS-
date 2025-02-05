@@ -166,9 +166,6 @@ const maximum_number_range = 10000
 
 next_move_btn.addEventListener("click", () => {
 
-  resetStars()
-  reset_star_rating_score()
-
   let numID = Math.floor(Math.random() * maximum_number_range) + 1;
   let url = `https://api.jikan.moe/v4/anime/${numID}/full`
 
@@ -214,6 +211,9 @@ async function getAnimeData(url, numID) {
     
       movie_name.innerText = anime_name
       img_movie.style.backgroundImage = `url('${anime_poster}')`;
+
+      resetStars()
+      reset_star_rating_score()
       
   } catch (error) {
       console.error('Erro:', error);

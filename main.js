@@ -5,12 +5,21 @@ const star_rating_txt = document.getElementById("star_rating_txt");
 const rate_btn = document.getElementById("rate_btn");
 const starContainer = document.getElementById("stars")
 
-let currentRating = 0;
+// configs. botão proximo filme e banner do filme
+
+const img_movie = document.querySelector(".img_movie")
+const nsfw_content = document.querySelector(".nsfw_content")
+const show_content_nsfw_btn = document.querySelector(".show_content_nsfw")
+const next_move_btn_container = document.querySelector(".next_movie_btn_container")
+const next_move_btn = document.getElementById("next_move_btn")
+const movie_name = document.querySelector(".movie_name")
+const maximum_number_range = 10000
 
 //variaveis da area Star Rating Score
 const stars_ratings = document.querySelectorAll(".rating_score_container")
 const total_star_rating_score_TXT = document.getElementById("total_rating")
 
+let currentRating = 0;
 let total_score = 0
 
 // Atualiza o preenchimento das estrelas com base no movimento do mouse
@@ -52,7 +61,7 @@ function handleMouseMove(event) {
 
 rate_btn.addEventListener("click", () => {
 
-  starContainer.style.cursor = "pointer"
+  starContainer.style.cursor = `url("img/color-pixels-pokeball-pointer.png"), pointer;`
 
   // Associa o evento de movimento às estrelas
   stars.forEach(star => {
@@ -61,7 +70,7 @@ rate_btn.addEventListener("click", () => {
 
   starContainer.addEventListener('click', () => {
     removeMouseEvents();
-    starContainer.style.cursor = "auto"
+    starContainer.style.cursor = `url("img/color-pixels-pokeball-default\ \(1\).png"), auto;`
     //console.log(`Classificação final: ${currentRating} estrelas`);
   });
 
@@ -156,20 +165,12 @@ error_modal_container.addEventListener("click", (event) => {
   }
 })
 
-// configs. botão proximo filme e banner do filme
-
-const img_movie = document.querySelector(".img_movie")
-const next_move_btn_container = document.querySelector(".next_movie_btn_container")
-const next_move_btn = document.getElementById("next_move_btn")
-const movie_name = document.querySelector(".movie_name")
-const maximum_number_range = 10000
-
 next_move_btn.addEventListener("click", () => {
 
   let numID = Math.floor(Math.random() * maximum_number_range) + 1;
   let url = `https://api.jikan.moe/v4/anime/${numID}/full`
 
-  //console.log(`Numero gerado: ${numID}`)
+  //console.log(`Dados do anime: ${url}`)
 
   getAnimeData(url, numID)
 
@@ -212,6 +213,25 @@ async function getAnimeData(url, numID) {
       movie_name.innerText = anime_name
       img_movie.style.backgroundImage = `url('${anime_poster}')`;
 
+      if  (img_movie.classList.contains("blur")) {
+        img_movie.classList.remove("blur")
+      }
+    
+      nsfw_content.style.display = "none"
+
+      console.log("Generos do anime:")
+
+      const animeGenres = data.data.genres.forEach(item => {
+        const genre = item.name.toLowerCase()
+
+        console.log(genre)
+        
+        if (genre == "hentai") {
+          img_movie.classList.add("blur")
+          nsfw_content.style.display = "flex"
+        }
+      })
+
       resetStars()
       reset_star_rating_score()
       
@@ -227,6 +247,11 @@ async function getAnimeData(url, numID) {
   }
   
 }
+
+show_content_nsfw_btn.addEventListener("click", () => {
+  img_movie.classList.remove("blur")
+  nsfw_content.style.display = "none"
+})
 
 // função para copiar o nome do anime
 const animeName = document.querySelector(".movie_name");

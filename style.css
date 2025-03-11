@@ -46,6 +46,7 @@ body {
  padding: 20px;
 
   background-color: #19183a;
+  cursor: url("img/color-pixels-pokeball-default\ \(1\).png"), auto;
 }
 
 main {
@@ -57,6 +58,10 @@ main {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+button {
+  cursor: url("img/color-pixels-pokeball-pointer.png"), pointer;
 }
 
 .star_rating {
@@ -88,20 +93,66 @@ main {
 
 .movie_name:hover {
   background-color: #2d2c56;
-  cursor: pointer;
+
   border-radius: 30px;
 }
 
-.img_movie {
+.movie_container {
+  position: relative;
   width: var(--tamanho_capa_filme);
   height: calc(var(--tamanho_capa_filme) + 20vh);
+}
+
+.img_movie {
+  width: 100%;
+  height: 100%;
   margin-bottom: 10px;
   background: rgba(0, 0, 0, 0) url("img/pokemon-o-filme-mewtwo-contra-ataca.jpg") no-repeat center;
   background-size: contain;
 
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: end;
+
+  position: relative;
+}
+
+.blur {
+  filter: blur(25px);
+}
+
+.nsfw_content {
+  background-color: rgba(0, 0, 0, 0.589);
+  height: 100%;
+  width: 100%;
+
+  display: none;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 0;
+  z-index: 99;
+}
+
+.nsfw_content > h1  {
+  color: white;
+  font-size: 2rem;
+}
+
+.nsfw_content > button {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 0.3s linear;
+  margin-top: 10px;
+}
+
+.nsfw_content > button:active {
+  scale: 0.9;
+  opacity: 0.8;
 }
 
 .position_btn {
@@ -141,7 +192,7 @@ main {
   font-size: 2.5vh;
   border: none;
   border-radius: 0px 50px;
-  cursor: pointer;
+
 
   color: white;
   background-color: rgb(46, 46, 255);
@@ -158,7 +209,7 @@ main {
   font-size: 2.5vh;
   border: none;
   border-radius: 0px 50px;
-  cursor: pointer;
+
 
   color: white;
   background-color: rgb(46, 46, 255);
@@ -357,7 +408,7 @@ main {
   
   background-color: #e92525;
   border: none;
-  cursor: pointer;
+
   padding: 10px 20px;
   border-radius: 50px;
 

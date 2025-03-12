@@ -5,6 +5,8 @@ const star_rating_txt = document.getElementById("star_rating_txt");
 const rate_btn = document.getElementById("rate_btn");
 const starContainer = document.getElementById("stars")
 
+const loader = document.querySelector(".loading_container")
+
 // configs. botão proximo filme e banner do filme
 
 const img_movie = document.querySelector(".img_movie")
@@ -167,6 +169,8 @@ error_modal_container.addEventListener("click", (event) => {
 
 next_move_btn.addEventListener("click", () => {
 
+  loader.style.display = "flex"
+
   let numID = Math.floor(Math.random() * maximum_number_range) + 1;
   let url = `https://api.jikan.moe/v4/anime/${numID}/full`
 
@@ -245,6 +249,8 @@ async function getAnimeData(url, numID) {
 
       // getAnimeData(url, numID)
   }
+
+  loader.style.display = "none"
   
 }
 
